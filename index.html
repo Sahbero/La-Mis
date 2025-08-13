@@ -50,9 +50,10 @@
             line-height: 1.2;
             margin-bottom: 1rem;
         }
-
+        
         h1 { font-size: 3rem; }
         h2 { font-size: 2.5rem; text-align: center; }
+        h3.centered { text-align: center; } /* Yeni: Ortalanmış başlık için */
         p { margin-bottom: 1rem; }
         a { text-decoration: none; color: inherit; }
 
@@ -118,6 +119,27 @@
 
         .main-nav ul li a:hover {
             color: var(--dark-green);
+        }
+
+        /* Hamburger Menü (Gizli, sadece mobilde görünür) */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            justify-content: space-between;
+        }
+        .hamburger-menu span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--dark-green);
+            border-radius: 3px;
+            transition: all 0.3s ease-in-out;
+        }
+        #menu-toggle {
+            display: none;
         }
 
         /* ------------------------- */
@@ -309,14 +331,54 @@
             #hero h1 { font-size: 3rem; }
             h2 { font-size: 2rem; }
 
+            /* Header ve Navigasyon */
             .main-header .container {
+                justify-content: space-between;
+            }
+            .main-nav {
+                display: none;
                 flex-direction: column;
+                width: 100%;
+                text-align: center;
+                background: var(--white);
+                position: absolute;
+                top: 60px; /* Header yüksekliği */
+                left: 0;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             }
             .main-nav ul {
-                margin-top: 1rem;
+                flex-direction: column;
             }
             .main-nav ul li {
-                margin: 0 0.8rem;
+                margin: 0;
+                padding: 1rem 0;
+                border-bottom: 1px solid var(--light-gray);
+            }
+            .main-nav ul li:last-child {
+                border-bottom: none;
+            }
+            .main-nav ul li a {
+                color: var(--dark-green);
+            }
+
+            /* Hamburger Menü İkonu */
+            .hamburger-menu {
+                display: flex;
+            }
+            /* Hamburger Menü Açıkken */
+            #menu-toggle:checked ~ .main-nav {
+                display: flex;
+            }
+            
+            /* Animasyon için hamburger ikon değişimi */
+            #menu-toggle:checked ~ .hamburger-menu span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            #menu-toggle:checked ~ .hamburger-menu span:nth-child(2) {
+                opacity: 0;
+            }
+            #menu-toggle:checked ~ .hamburger-menu span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
             }
 
             section {
@@ -338,6 +400,14 @@
     <header class="main-header">
         <div class="container">
             <a href="#hero" class="logo">La Mis</a>
+            
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            
             <nav class="main-nav">
                 <ul>
                     <li><a href="#hikayemiz">Hikayemiz</a></li>
@@ -364,7 +434,7 @@
                 <div class="about-grid">
                     <div class="about-text">
                         <h2>Hikayemiz</h2>
-                        <h3>Bir Tutkunun Eseri</h3>
+                        <h3 class="centered">Bir Tutkunun Eseri</h3>
                         <p>La Mis, basit bir hayalle başladı: insanların sadece iyi kahve içmekle kalmayıp, aynı zamanda günün stresinden arınabilecekleri, dostlarıyla keyifli anlar paylaşabilecekleri bir mekan yaratmak. Her bir detayı özenle düşündük, her köşesini sevgiyle dekore ettik.</p>
                         <p>Kalitemizden ödün vermeden, en taze malzemelerle hazırladığımız ürünlerimizi sizlere sunmaktan gurur duyuyoruz. Bu yolculukta bize katıldığınız için teşekkür ederiz.</p>
                     </div>
@@ -487,15 +557,13 @@
 
     <script>
         // Sayfa kaydırıldığında elemanları "görünür" yapma scripti
-        // Bu script, `.reveal` class'ına sahip elemanlar ekrana girdiğinde onlara `.visible` class'ını ekler.
-        // CSS tarafında bu class'a göre animasyon tanımlanmıştır.
-        
         const revealElements = document.querySelectorAll('.reveal');
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Animasyon sadece bir kere çalışsın
                 }
             });
         }, {
@@ -504,6 +572,13 @@
 
         revealElements.forEach(element => {
             observer.observe(element);
+        });
+
+        // Mobil menü linkine tıklandığında menüyü kapatma
+        document.querySelectorAll('.main-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('menu-toggle').checked = false;
+            });
         });
 
     </script>
