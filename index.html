@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Mis - Kahve ve Sohbetin Buluştuğu Yer</title>
     <style>
-        /* Genel Stiller ve Fontlar */
+        /* Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
         :root {
             --primary-color: #2E8B57; /* Koyu Yeşil */
-            --secondary-color: #F8F8F8; /* Hafif Gri */
+            --secondary-color: #FDF5E6; /* Krem Beyazı */
             --text-color: #2C3E50; /* Koyu Gri */
             --light-text-color: #5D6D7E; /* Açık Gri */
+            --accent-color: #A0522D; /* Kahverengi vurgu */
         }
 
         body {
@@ -29,7 +31,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 5%;
+            padding: 1.5rem 5%;
             background: white;
             position: sticky;
             top: 0;
@@ -38,8 +40,8 @@
         }
 
         .navbar .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
             font-weight: 700;
             color: var(--primary-color);
             text-decoration: none;
@@ -48,8 +50,9 @@
         .navbar .nav-links {
             list-style: none;
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             margin: 0;
+            padding: 0;
         }
 
         .navbar .nav-links a {
@@ -66,7 +69,7 @@
         /* Hero Bölümü */
         .hero {
             height: 100vh;
-            background: url('https://source.unsplash.com/1600x900/?green,cafe,modern') no-repeat center center/cover;
+            background: url('https://source.unsplash.com/1600x900/?coffee-shop-interior,cozy') no-repeat center center/cover;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -83,61 +86,88 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(46, 139, 87, 0.5); /* Yarı saydam koyu yeşil katman */
+        }
+        
+        .hero-content {
+            z-index: 1;
+            padding: 2rem;
         }
 
         .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
             margin: 0;
-            z-index: 1;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .hero p {
             font-size: 1.5rem;
+            font-style: italic;
             margin-top: 1rem;
-            z-index: 1;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
         /* Bölüm Stilleri */
         .section {
-            padding: 5rem 5%;
+            padding: 6rem 5%;
             text-align: center;
         }
 
         .section h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: var(--primary-color);
             margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
         }
 
         /* Menü Stilleri */
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
             margin-top: 3rem;
         }
 
         .menu-item {
             background: white;
-            padding: 1.5rem;
+            padding: 1rem;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-            text-align: left;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         }
 
         .menu-item img {
             width: 100%;
-            height: 200px;
+            height: 150px;
             object-fit: cover;
             border-radius: 8px;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .menu-item h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--primary-color);
             margin: 0;
         }
@@ -145,6 +175,7 @@
         .menu-item p {
             margin: 0.5rem 0;
             color: var(--light-text-color);
+            font-size: 0.9rem;
         }
 
         /* Galeri Stilleri */
@@ -189,7 +220,7 @@
             border-radius: 5px;
             font-size: 1rem;
             font-family: 'Roboto', sans-serif;
-            background-color: var(--secondary-color);
+            background-color: white;
             color: var(--text-color);
         }
 
@@ -209,7 +240,7 @@
         }
 
         .contact-form button:hover {
-            background-color: #1E6B4B; /* Koyu yeşilin daha koyu tonu */
+            background-color: #1E6B4B;
         }
 
         /* Footer */
@@ -230,31 +261,65 @@
         .footer .social-links a:hover {
             opacity: 0.8;
         }
+        
+        /* Hamburger Menü İkonu */
+        .hamburger-menu {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-color);
+            transition: all 0.3s ease;
+        }
 
         /* Responsive Tasarım */
         @media (max-width: 768px) {
             .navbar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .navbar .logo {
-                margin-bottom: 1rem;
+                flex-direction: row;
+                align-items: center;
             }
 
             .navbar .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100%;
+                width: 70%;
+                background-color: white;
                 flex-direction: column;
-                gap: 0.5rem;
-                width: 100%;
-                display: none; /* Mobil menü başlangıçta gizli */
+                justify-content: center;
+                gap: 2rem;
+                transition: right 0.3s ease-in-out;
+                box-shadow: -2px 0 5px rgba(0,0,0,0.1);
             }
 
             .navbar .nav-links.active {
-                display: flex; /* Aktif olduğunda görünür */
+                right: 0;
+            }
+
+            .hamburger-menu {
+                display: flex;
+            }
+
+            .hamburger-menu.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger-menu.active .bar:nth-child(1) {
+                transform: rotate(-45deg) translate(-6px, 6px);
+            }
+
+            .hamburger-menu.active .bar:nth-child(3) {
+                transform: rotate(45deg) translate(-6px, -6px);
             }
 
             .hero h1 {
-                font-size: 3rem;
+                font-size: 3.5rem;
             }
 
             .hero p {
@@ -264,6 +329,10 @@
             .section {
                 padding: 3rem 5%;
             }
+
+            .navbar .nav-links li a {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -271,7 +340,12 @@
 
     <nav class="navbar">
         <a href="#" class="logo">La Mis</a>
-        <ul class="nav-links">
+        <div class="hamburger-menu" id="hamburger">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-links" id="nav-links">
             <li><a href="#home">Ana Sayfa</a></li>
             <li><a href="#menu">Menü</a></li>
             <li><a href="#about">Hakkımızda</a></li>
@@ -281,8 +355,10 @@
     </nav>
 
     <header id="home" class="hero">
-        <h1>La Mis</h1>
-        <p>Doğallığın ve Lezzetin Buluşma Noktası</p>
+        <div class="hero-content">
+            <h1>La Mis</h1>
+            <p>Lezzet ve Huzurun Buluştuğu Yer</p>
+        </div>
     </header>
 
     <section id="menu" class="section">
@@ -301,16 +377,46 @@
                 <p>25 TL</p>
             </div>
             <div class="menu-item">
-                <img src="https://source.unsplash.com/400x300/?green-tea-cake" alt="Cheesecake">
-                <h3>Matcha Kek</h3>
-                <p>Yeşil çayın benzersiz tadıyla yumuşak kek.</p>
-                <p>35 TL</p>
+                <img src="https://source.unsplash.com/400x300/?americano" alt="Americano">
+                <h3>Americano</h3>
+                <p>Yoğun lezzetli, sıcak su ile seyreltilmiş espresso.</p>
+                <p>20 TL</p>
             </div>
             <div class="menu-item">
-                <img src="https://source.unsplash.com/400x300/?avocado-toast" alt="Sandviç">
-                <h3>Avokado Tost</h3>
-                <p>Taze avokado ve ekşi maya ekmeğiyle.</p>
+                <img src="https://source.unsplash.com/400x300/?cappuccino" alt="Cappuccino">
+                <h3>Cappuccino</h3>
+                <p>Eşit miktarda espresso, buhar ve süt köpüğü.</p>
+                <p>25 TL</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://source.unsplash.com/400x300/?mocha" alt="Mocha">
+                <h3>Mocha</h3>
+                <p>Çikolatalı ve kremalı, kahve severlerin tatlı rüyası.</p>
+                <p>30 TL</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://source.unsplash.com/400x300/?iced-coffee" alt="Soğuk Kahve">
+                <h3>Soğuk Kahve</h3>
+                <p>Sıcak günlerin ferahlatıcı klasiği.</p>
+                <p>28 TL</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://source.unsplash.com/400x300/?sandwich" alt="Sandviç">
+                <h3>Füme Etli Sandviç</h3>
+                <p>Taze ekmek arasında doyurucu lezzetler.</p>
                 <p>40 TL</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://source.unsplash.com/400x300/?croissant" alt="Kruvasan">
+                <h3>Tereyağlı Kruvasan</h3>
+                <p>Sıcacık ve çıtır çıtır, kahvaltıların vazgeçilmezi.</p>
+                <p>22 TL</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://source.unsplash.com/400x300/?brownie" alt="Brownie">
+                <h3>Cevizli Brownie</h3>
+                <p>Yoğun çikolata tadıyla unutulmaz bir deneyim.</p>
+                <p>35 TL</p>
             </div>
         </div>
     </section>
@@ -327,10 +433,10 @@
         <div class="gallery-grid">
             <div class="gallery-item"><img src="https://source.unsplash.com/400x400/?cafe-interior,plants" alt="Kafe İç Mekan"></div>
             <div class="gallery-item"><img src="https://source.unsplash.com/400x400/?latte-art" alt="Latte Art"></div>
-            <div class="gallery-item"><img src="https://source.unsplash.com/400x400/?matcha" alt="Matcha"></div>
+            <div class="gallery-item"><img src="https://source.unsplash.com/400x400/?cozy-coffee-shop" alt="Sıcak Kahve Ortamı"></div>
             <div class="gallery-item"><img src="https://source.unsplash.com/400x400/?bakery" alt="Taze Fırın Ürünleri"></div>
             <div class="gallery-item"><img src="https://source.unsplash.com/400x400/?coffee-shop-exterior" alt="Kafe Dış Mekan"></div>
-            <div class="gallery-item"><img src="https://source.unsplash.com/400x400/?fresh-fruits" alt="Taze Meyveler"></div>
+            <div class="gallery-item"><img src="https://source.unsplash.com/400x400/?fresh-brewed-coffee" alt="Yeni Demlenmiş Kahve"></div>
         </div>
     </section>
 
@@ -367,6 +473,15 @@
         </div>
         <p style="margin-top: 1rem;">&copy; 2025 La Mis. Tüm Hakları Saklıdır.</p>
     </footer>
+    
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
 
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
