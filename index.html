@@ -65,6 +65,21 @@
         .navbar .nav-links a:hover {
             color: var(--primary-color);
         }
+        
+        /* Hamburger Menü İkonu */
+        .hamburger-menu {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-color);
+            transition: all 0.3s ease;
+        }
 
         /* Hero Bölümü */
         .hero {
@@ -262,21 +277,6 @@
             opacity: 0.8;
         }
         
-        /* Hamburger Menü İkonu */
-        .hamburger-menu {
-            display: none;
-            cursor: pointer;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .bar {
-            width: 25px;
-            height: 3px;
-            background-color: var(--text-color);
-            transition: all 0.3s ease;
-        }
-
         /* Responsive Tasarım */
         @media (max-width: 768px) {
             .navbar {
