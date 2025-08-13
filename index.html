@@ -9,10 +9,10 @@
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400&display=swap');
 
         :root {
-            --primary-color: #A0522D; /* Kahverengi */
-            --secondary-color: #F5F5DC; /* Bej */
-            --text-color: #36454F; /* Kömür grisi */
-            --light-text-color: #8B4513; /* Daha açık kahverengi */
+            --primary-color: #2E8B57; /* Koyu Yeşil */
+            --secondary-color: #F8F8F8; /* Hafif Gri */
+            --text-color: #2C3E50; /* Koyu Gri */
+            --light-text-color: #5D6D7E; /* Açık Gri */
         }
 
         body {
@@ -30,11 +30,11 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 5%;
-            background: rgba(245, 245, 220, 0.9);
+            background: white;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .navbar .logo {
@@ -49,6 +49,7 @@
             list-style: none;
             display: flex;
             gap: 2rem;
+            margin: 0;
         }
 
         .navbar .nav-links a {
@@ -65,7 +66,7 @@
         /* Hero Bölümü */
         .hero {
             height: 100vh;
-            background: url('https://source.unsplash.com/1600x900/?coffee,cafe,interior') no-repeat center center/cover;
+            background: url('https://source.unsplash.com/1600x900/?green,cafe,modern') no-repeat center center/cover;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -123,7 +124,7 @@
             background: white;
             padding: 1.5rem;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
             text-align: left;
         }
 
@@ -143,6 +144,7 @@
 
         .menu-item p {
             margin: 0.5rem 0;
+            color: var(--light-text-color);
         }
 
         /* Galeri Stilleri */
@@ -187,6 +189,8 @@
             border-radius: 5px;
             font-size: 1rem;
             font-family: 'Roboto', sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
         }
 
         .contact-form textarea {
@@ -205,7 +209,7 @@
         }
 
         .contact-form button:hover {
-            background-color: #8B4513;
+            background-color: #1E6B4B; /* Koyu yeşilin daha koyu tonu */
         }
 
         /* Footer */
@@ -231,11 +235,22 @@
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar .logo {
+                margin-bottom: 1rem;
             }
 
             .navbar .nav-links {
-                gap: 1rem;
-                margin-top: 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+                display: none; /* Mobil menü başlangıçta gizli */
+            }
+
+            .navbar .nav-links.active {
+                display: flex; /* Aktif olduğunda görünür */
             }
 
             .hero h1 {
@@ -267,7 +282,7 @@
 
     <header id="home" class="hero">
         <h1>La Mis</h1>
-        <p>Kahvenin ve Sohbetin Buluştuğu Yer</p>
+        <p>Doğallığın ve Lezzetin Buluşma Noktası</p>
     </header>
 
     <section id="menu" class="section">
@@ -286,42 +301,42 @@
                 <p>25 TL</p>
             </div>
             <div class="menu-item">
-                <img src="https://source.unsplash.com/400x300/?cheesecake" alt="Cheesecake">
-                <h3>Limonlu Cheesecake</h3>
-                <p>Hafif ve tazeleyici, ev yapımı cheesecake.</p>
+                <img src="https://source.unsplash.com/400x300/?green-tea-cake" alt="Cheesecake">
+                <h3>Matcha Kek</h3>
+                <p>Yeşil çayın benzersiz tadıyla yumuşak kek.</p>
                 <p>35 TL</p>
             </div>
             <div class="menu-item">
-                <img src="https://source.unsplash.com/400x300/?sandwich" alt="Sandviç">
-                <h3>Füme Etli Sandviç</h3>
-                <p>Taze ekmek arasında doyurucu lezzetler.</p>
+                <img src="https://source.unsplash.com/400x300/?avocado-toast" alt="Sandviç">
+                <h3>Avokado Tost</h3>
+                <p>Taze avokado ve ekşi maya ekmeğiyle.</p>
                 <p>40 TL</p>
             </div>
         </div>
     </section>
 
-    <section id="about" class="section" style="background-color: #FDF5E6;">
+    <section id="about" class="section" style="background-color: white;">
         <h2>Hakkımızda</h2>
-        <p style="max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
-            La Mis, sadece bir kafe değil, aynı zamanda dostlukların ve güzel anıların yeşerdiği bir durak noktasıdır. En taze kahve çekirdeklerini özenle seçiyor, her bir fincanı tutkuyla hazırlıyoruz. Mekanımız, kendinizi evinizde gibi hissetmeniz için sıcak ve samimi bir şekilde tasarlandı. Kitap okuyabilir, çalışabilir veya sadece lezzetli bir kahve eşliğinde hayatın tadını çıkarabilirsiniz.
+        <p style="max-width: 800px; margin: 0 auto; font-size: 1.1rem; color: var(--light-text-color);">
+            La Mis, doğaya olan tutkumuzun ve iyi kahve sevgimizin birleşiminden doğdu. Her fincanda en kaliteli çekirdeklerin tadını çıkarmanızı, mekanımızda ise huzurlu ve ilham verici bir atmosferde keyifli vakit geçirmenizi amaçlıyoruz. Sürdürülebilirlik ve yerel üreticileri desteklemek, felsefemizin temel taşlarından biridir.
         </p>
     </section>
 
     <section id="gallery" class="section">
         <h2>Galeri</h2>
         <div class="gallery-grid">
-            <div class="gallery-item"><img src="https://source.unsplash.com/400x400/?coffee-shop-interior" alt="Kafe İç Mekan"></div>
-            <div class="gallery-item"><img src="https://source.unsplash.com/400x400/?cafe-books" alt="Kitaplar ve Kahve"></div>
-            <div class="gallery-item"><img src="https://source.unsplash.com/400x400/?barista" alt="Barista"></div>
-            <div class="gallery-item"><img src="https://source.unsplash.com/400x400/?coffee-beans" alt="Kahve Çekirdekleri"></div>
+            <div class="gallery-item"><img src="https://source.unsplash.com/400x400/?cafe-interior,plants" alt="Kafe İç Mekan"></div>
             <div class="gallery-item"><img src="https://source.unsplash.com/400x400/?latte-art" alt="Latte Art"></div>
-            <div class="gallery-item"><img src="https://source.unsplash.com/400x400/?cafe-seating" alt="Oturma Alanı"></div>
+            <div class="gallery-item"><img src="https://source.unsplash.com/400x400/?matcha" alt="Matcha"></div>
+            <div class="gallery-item"><img src="https://source.unsplash.com/400x400/?bakery" alt="Taze Fırın Ürünleri"></div>
+            <div class="gallery-item"><img src="https://source.unsplash.com/400x400/?coffee-shop-exterior" alt="Kafe Dış Mekan"></div>
+            <div class="gallery-item"><img src="https://source.unsplash.com/400x400/?fresh-fruits" alt="Taze Meyveler"></div>
         </div>
     </section>
 
-    <section id="contact" class="section" style="background-color: #FDF5E6;">
+    <section id="contact" class="section" style="background-color: white;">
         <h2>İletişim</h2>
-        <p>Bize ulaşmaktan çekinmeyin! Soru, öneri ve yorumlarınız bizim için değerli.</p>
+        <p style="color: var(--light-text-color);">Bize ulaşmaktan çekinmeyin! Soru, öneri ve yorumlarınız bizim için değerli.</p>
         <div class="contact-form">
             <form action="#">
                 <label for="name">Adınız Soyadınız</label>
@@ -337,9 +352,9 @@
             </form>
         </div>
         <div style="margin-top: 3rem;">
-            <h3>Adres</h3>
-            <p>Örnek Mahallesi, Örnek Sokak No: 123, Örnek Şehir</p>
-            <h3>Çalışma Saatleri</h3>
+            <h3 style="color: var(--primary-color);">Adres</h3>
+            <p>Doğa Sokak, Huzur Apartmanı No: 5, Yeşil Şehir</p>
+            <h3 style="color: var(--primary-color);">Çalışma Saatleri</h3>
             <p>Pazartesi - Cuma: 08:00 - 22:00</p>
             <p>Cumartesi - Pazar: 09:00 - 23:00</p>
         </div>
@@ -350,7 +365,7 @@
             <a href="https://www.instagram.com/lamis_kafe" target="_blank">Instagram</a> |
             <a href="https://www.facebook.com/lamis_kafe" target="_blank">Facebook</a>
         </div>
-        <p>&copy; 2025 La Mis. Tüm Hakları Saklıdır.</p>
+        <p style="margin-top: 1rem;">&copy; 2025 La Mis. Tüm Hakları Saklıdır.</p>
     </footer>
 
 </body>
